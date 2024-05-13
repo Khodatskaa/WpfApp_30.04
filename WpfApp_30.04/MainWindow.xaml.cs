@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Data;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,6 +14,36 @@ namespace WpfApp_30._04
 {
     public partial class MainWindow : Window
     {
-        
+        private DBManager dbManager;
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            DataContext = new MainViewModel(); 
+            dbManager = new DBManager("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        }
+
+        private void Connect_Click(object sender, RoutedEventArgs e)
+        {
+            if (dbManager.TestConnection())
+            {
+                ConnectionStatusTextBox.Text = "Connected";
+            }
+            else
+            {
+                ConnectionStatusTextBox.Text = "Connection Failed";
+            }
+        }
+
+        private void Disconnect_Click(object sender, RoutedEventArgs e)
+        {
+            ConnectionStatusTextBox.Text = "Disconnected";
+        }
+    }
+
+    internal class MainViewModel
+    {
+        public MainViewModel()
+        {}
     }
 }
