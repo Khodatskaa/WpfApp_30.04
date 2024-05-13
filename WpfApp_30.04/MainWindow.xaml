@@ -8,6 +8,36 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Name:" Margin="0,0,5,0"/>
+            <TextBox x:Name="txtName" Width="150" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBlock Text="Type:" Margin="10,0,5,0"/>
+            <TextBox x:Name="txtType" Width="100" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBlock Text="Color:" Margin="10,0,5,0"/>
+            <TextBox x:Name="txtColor" Width="100" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBlock Text="Calories:" Margin="10,0,5,0"/>
+            <TextBox x:Name="txtCalories" Width="100" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        </StackPanel>
+
+        <Button Grid.Row="1" Content="Insert Data" Click="InsertData_Click" HorizontalAlignment="Center" Margin="0,10"
+                Style="{StaticResource MaterialDesignRaisedButton}"/>
+
+        <ListView Grid.Row="2" x:Name="dataListView" Margin="10" BorderBrush="Black" BorderThickness="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=id}" Width="50"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=name}" Width="150"/>
+                    <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Path=type}" Width="100"/>
+                    <GridViewColumn Header="Color" DisplayMemberBinding="{Binding Path=color}" Width="100"/>
+                    <GridViewColumn Header="Calories" DisplayMemberBinding="{Binding Path=calories}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
